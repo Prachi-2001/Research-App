@@ -3,7 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import TabPanel from "@mui/lab/TabPanel";
-import TabContext from '@mui/lab/TabContext';
+import TabContext from "@mui/lab/TabContext";
 import ResearchApp from "./ResearchApp";
 
 export default function BasicTabs() {
@@ -20,7 +20,7 @@ export default function BasicTabs() {
           sx={{
             borderRadius: "10px",
             width: "100%",
-            bgcolor: "#e8e8e8",
+            bgcolor: "#f1f3f5",
             height: "50px", // Set the height to match your desired tab height
           }}
         >
@@ -37,7 +37,7 @@ export default function BasicTabs() {
           >
             <Tab
               value="one"
-              label="Item One"
+              label="SUMMARISE"
               sx={{
                 "&.Mui-selected": {
                   backgroundColor: "#408DF9",
@@ -50,7 +50,7 @@ export default function BasicTabs() {
             />
             <Tab
               value="two"
-              label="Item Two"
+              label="ELABORATE"
               sx={{
                 "&.Mui-selected": {
                   backgroundColor: "#408DF9",
@@ -63,7 +63,7 @@ export default function BasicTabs() {
             />
             <Tab
               value="three"
-              label="Item Three"
+              label="RESEARCH"
               sx={{
                 "&.Mui-selected": {
                   backgroundColor: "#408DF9",
@@ -76,7 +76,7 @@ export default function BasicTabs() {
             />
             <Tab
               value="four"
-              label="Item Four"
+              label="CHAT WITH PDF"
               sx={{
                 "&.Mui-selected": {
                   backgroundColor: "#408DF9",
@@ -89,10 +89,13 @@ export default function BasicTabs() {
             />
           </Tabs>
         </Box>
-        <TabPanel value="one">Content for Item One</TabPanel>
-        <TabPanel value="two">Content for Item Two</TabPanel>
-        <TabPanel value="three" sx={{width: "100%"}}><ResearchApp/></TabPanel>
-        <TabPanel value="four">Content for Item Four</TabPanel>
+        <TabPanel value="one">Summarise text</TabPanel>
+        <TabPanel value="two">Elaborate text</TabPanel>
+        <TabPanel value="three" sx={{ paddingRight: 0, paddingLeft: 0}}>
+          <ResearchApp />
+        </TabPanel>
+
+        <TabPanel value="four">Chat with pdf feature</TabPanel>
       </TabContext>
     </>
   );

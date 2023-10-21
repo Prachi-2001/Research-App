@@ -26,6 +26,18 @@ const ResearchApp = () => {
         template: "vancouver",
         format,
       }),
+      bibtex: reference.format("bibtex", {
+        format
+      }),
+      biblatex: reference.format("biblatex", {
+        format
+      }),
+      bibtxt: reference.format("bibtxt", {
+        format
+      }),
+      ris: reference.format("ris", {
+        format
+      })
       // Add more citation styles here
     };
 
@@ -60,19 +72,23 @@ const ResearchApp = () => {
   return (
     <div>
       <div>
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search for research content"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="h-[40px] w-full px-3 border-[2px] border-black rounded-md"
-          />
-          <AiOutlineSearch
-            size={30}
-            className="absolute right-2 top-1.5 cursor-pointer"
-            onClick={() => handleSearch()}
-          />
+        <div className="w-full flex justify-between relative">
+          <div className="w-[88%]">
+            <input
+              type="text"
+              placeholder="Search for research content"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="h-[40px] w-full px-3 border-[2px] bg-[#eaf5fc] rounded-md"
+            />
+          </div>
+          <div className="bg-[#408DF9] w-[10%] rounded-[10px]">
+            <AiOutlineSearch
+              size={30}
+              className="absolute right-3 top-1.5 cursor-pointer border-none text-white"
+              onClick={() => handleSearch()}
+            />
+          </div>
         </div>
         <div className="py-4 sm:rounded-lg">
           {researchResults.length !== 0 ? (
@@ -82,17 +98,16 @@ const ResearchApp = () => {
                   key={index}
                   className="bg-white p-4 shadow-md rounded-md mb-4"
                 >
-                  <h2>{result.title}</h2>
+                  <h2 className="font-bold text-[18px]">{result.title}</h2>
                   <br />
                   <p>
-                    {" "}
                     <span>
                       {hiddenStates[index] && result.abstract
                         ? `${result.abstract?.substr(0, 200).trim()}...`
                         : result.abstract && result.abstract}
                       <a
                         style={{
-                          color: hiddenStates[index] ? "blue" : "red",
+                          color: hiddenStates[index] ? "#408DF9" : "red",
                           cursor: "pointer",
                         }}
                         onClick={() =>
@@ -116,13 +131,22 @@ const ResearchApp = () => {
                       href={result.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      style={{
+                        textDecoration: "none",
+                        color: "#408DF9", // Change the color to your preference
+                        fontWeight: "bold",
+                        borderBottom: "2px solid #408DF9", // Add a bottom border for emphasis
+                      }}
                     >
                       View Paper
                     </a>
                   </p>
+
                   <p>Citation Count: {result.citationCount}</p>
 
-                  <label htmlFor={`citation-select-${index}`}>
+                  <label
+                    htmlFor={`citation-select-${index}`}
+                  >
                     Choose Citation format
                   </label>
 
@@ -140,20 +164,32 @@ const ResearchApp = () => {
                         e.target.value
                       )
                     }
+                    className="ml-4"
+                    style={{
+                      backgroundColor: "#408DF9", 
+                      color: "white", 
+                      padding: "5px", 
+                      fontWeight: "bold",
+                      borderRadius: "15px", 
+                      maxWidth: "90px"
+                    }}
                   >
-                    <option value="default">Choose citation style..</option>
+                    <option value="default">Cite</option>
                     <option value="apa">APA</option>
                     <option value="harvard1">Harvard</option>
-                    <option value="vancouver">Vancouver</option>
-                    {/* Add more citation styles here */}
+                    <option value="bibtex">bibtex</option>
+                    <option value="biblatex">biblatex</option>
+                    <option value="bibtxt">bibtxt</option>
+                    
                   </select>
+
                   <br />
                   {citationStyles[index] && (
-                    <div>
+                    <div className="mt-1">
                       <h3>
                         Selected Citation Style: {citationStyles[index].style}
                       </h3>
-                      <button>Generate Citation</button>
+                      <button className="font-semibold mb-2">Generate Citation</button>
                       <p
                         dangerouslySetInnerHTML={{
                           __html: citationStyles[index].citation,
