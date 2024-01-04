@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Cite from "citation-js";
-import { AiOutlineSearch } from "react-icons/ai";
-import ReactReadMoreReadLess from "react-read-more-read-less";
 import BasicTabs from "./BasicTabs";
-import ResearchApp from "./ResearchApp";
 
 function Research() {
   const [searchTerm, setSearchTerm] = useState("");
   const [researchResults, setResearchResults] = useState([]);
   const [citationStyles, setCitationStyles] = useState({}); // Store citation styles for each item
-  const [hiddenStates, setHiddenStates] = useState(new Array(10).fill(true));
 
   const generateCitation = (data, itemIndex, style) => {
     const reference = new Cite(data);
@@ -63,14 +59,14 @@ function Research() {
 
   return (
     <>
-      <div className=" min-h-screen bg-gray-100 flex flex-col sm:py-12 justify-center lg:px-8">
+      <div className="min-h-screen bg-gradient-to-r from-[#5433FF]  via-[#20BDFF] to-green-400 flex flex-col sm:py-12 justify-center lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-[45%]">
-          <h2 className="mt-6 text-center text-3xl font-semibold text-gray-900">
-            Research App
+          <h2 className="mt-6 text-center text-4xl font-semibold text-gray-100">
+            Quick Research
           </h2>
         </div>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-[45%]">
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-[50%]">
           <div className="bg-white py-8 px-4 shadow-md sm:rounded-lg sm:px-5">
             <BasicTabs />
           </div>

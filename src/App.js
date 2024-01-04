@@ -1,17 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import Research from './components/Research';
-import BasicTabs from './components/BasicTabs';
-
+import logo from "./logo.svg";
+import "./App.css";
+import Research from "./components/Research";
+// added primereact theme
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 function App() {
   return (
     <div>
-      <Research/>
+      <Research />
     </div>
   );
 }
 
 export default App;
-
-
-
